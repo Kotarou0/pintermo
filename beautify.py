@@ -1,11 +1,12 @@
 from colorama import init
 from termcolor import colored
 
-BLANK = "_"
+BLANK = '_'
 
 def printb(stats):
     correct = stats[0]
     in_word = stats[1]
+    wrong = stats[2]
     output = []
 
     for i in range(0, len(correct)):
@@ -14,5 +15,5 @@ def printb(stats):
         elif in_word[i] != BLANK:
             output.append(colored(in_word[i], 'yellow'))
         else:
-            output.append(BLANK)
+            output.append(colored(wrong[i], 'red'))
     print(' '.join(output))
