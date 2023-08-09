@@ -9,15 +9,22 @@ class Guesser:
 
     def guess(self, guess: str):
         guessed = []
-        in_word = []
+        left = []
+        correct_left = list(self.correct).copy()
         for i in range(0, len(self.correct)):
             if guess[i] == self.correct[i]:
                 guessed.append(guess[i])
-                in_word.append(BLANK)
-        elif guess[i] in self.correct:
-                in_word.append(guess[i])
+                left.append(BLANK)
+                correct_left.remove(guess[i])
+            else: 
                 guessed.append(BLANK)
+                left.append(guess[i])
+        for i in range(0, len(self.correct)):
+            if left[i] in correct_left:
+                correct_left.remove(left[i])
+            else:
+                left[i] = BLANK
         #guessed = remove_duplicates(guessed)
         #in_word = remove_duplicates(in_word)
 
-        return [guessed, in_word]
+        return [guessed, left]
