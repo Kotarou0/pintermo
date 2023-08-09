@@ -1,3 +1,5 @@
+BLANK = "_"
+
 def remove_duplicates(x: list):
     return list(dict.fromkeys(x))
 
@@ -11,9 +13,11 @@ class Guesser:
         for i in range(0, len(self.correct)):
             if guess[i] == self.correct[i]:
                 guessed.append(guess[i])
-            elif guess[i] in self.correct:
+                in_word.append(BLANK)
+        elif guess[i] in self.correct:
                 in_word.append(guess[i])
-        guessed = remove_duplicates(guessed)
-        in_word = remove_duplicates(in_word)
+                guessed.append(BLANK)
+        #guessed = remove_duplicates(guessed)
+        #in_word = remove_duplicates(in_word)
 
         return [guessed, in_word]
